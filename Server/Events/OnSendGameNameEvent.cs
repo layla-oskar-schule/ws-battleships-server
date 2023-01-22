@@ -12,7 +12,7 @@ namespace Server.Events
 	{
 		public OnSendGameNameEvent() : base(EventName.SendGameNameEvent) { }
 
-        public override async Task OnGameEvent(SocketHandler handler, GamesController gamesController, Player player, string message)
+        public override void OnGameEvent(SocketHandler handler, GamesController gamesController, Player player, string message)
         {
             // if no game name was provided, we ask for it again
             if(String.IsNullOrWhiteSpace(message))

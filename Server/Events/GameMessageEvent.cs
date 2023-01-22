@@ -21,7 +21,7 @@ namespace Server.Events
             throw new NotImplementedException();
         }
 
-        public abstract Task OnGameEvent(SocketHandler handler, GamesController gamesController, Player player, string message);
+        public abstract void OnGameEvent(SocketHandler handler, GamesController gamesController, Player player, string message);
     }
 }
 

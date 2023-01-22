@@ -29,11 +29,11 @@ namespace server.Handlers
             player.Chat.AskForUserName();
         }
 
-        public override async Task ReceiveMessage(WebSocket sender, string message)
+        public override void ReceiveMessage(WebSocket sender, string message)
         {
             bool success = GamesController.TryGetPlayer(Connections.GetIdBySocket(sender), out Player? player);
 
-            if (!success)
+            if (!success || player == null)
             {
                 player = new Player(sender, this);
                 GamesController.AddPlayer(player);
@@ -43,7 +43,7 @@ namespace server.Handlers
             {
                 if (!message.StartsWith(gameMessageEvent.Name + EventName.SUFFIX))
                     continue;
-                await gameMessageEvent.OnGameEvent(this, GamesController, player, message[(gameMessageEvent.Name.Length + EventName.SUFFIX.Length)..]);
+                gameMessageEvent.OnGameEvent(this, GamesController, player, message[(gameMessageEvent.Name.Length + EventName.SUFFIX.Length)..]);
             }
             Debug.WriteLine("received: " + message);
         }

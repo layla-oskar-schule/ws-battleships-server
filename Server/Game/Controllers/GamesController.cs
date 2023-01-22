@@ -81,10 +81,5 @@ namespace server.Game.Controllers
         {
             return _games.Find(game => game.Players.Contains(player));
         }
-        
-        public void RemoveGameByPlayer(Player player)
-        {
-            _games.Remove(GetGameByPlayer(player));
-        }
     }
 }
