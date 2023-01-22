@@ -11,7 +11,7 @@ namespace Server.Events
     {
         public OnSendBoatLocationEvent() : base(EventName.SendBoatLocationEvent) { }
 
-        public override async Task OnGameEvent(SocketHandler handler, GamesController gamesController, Player player, string message)
+        public override void OnGameEvent(SocketHandler handler, GamesController gamesController, Player player, string message)
         {
             bool exists = gamesController.TryGetGameByPlayer(player, out BattleshipsGame? game);
 

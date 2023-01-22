@@ -12,7 +12,7 @@ namespace Server.Game.Chat
             this.game = game;
         }
 
-        private async Task Send(string message)
+        private void Send(string message)
         {
             foreach (Player player in game.Players)
             {
@@ -20,25 +20,25 @@ namespace Server.Game.Chat
             }
         }
 
-        public async Task SendGameMessage(string message)
+        public void SendGameMessage(string message)
         {
-            await Send("[GAME]" + message);
+            Send("[GAME]" + message);
         }
 
-        public async void SendJoinMessage(Player player)
+        public void SendJoinMessage(Player player)
         {
             string message = $"{player.Name} just joined. ({game.Players.Count}/{BattleshipsGame.s_gamePlayerSize})";
-            await SendGameMessage(message);
+            SendGameMessage(message);
         }
 
-        public async void SendStartMessage()
+        public void SendStartMessage()
         {
-            await SendGameMessage("Game is starting now!");
+            SendGameMessage("Game is starting now!");
         }
 
-        public async void SendGameOverMessage(Player winner)
+        public void SendGameOverMessage(Player winner)
         {
-            await SendGameMessage(winner.Name + " won the game!");
+            SendGameMessage(winner.Name + " won the game!");
         }
     }
 }

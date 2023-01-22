@@ -30,10 +30,10 @@ namespace server.Handlers
 
         public override async Task Receive(WebSocket sender, WebSocketReceiveResult result, byte[] buffer)
         {
-            await ReceiveMessage(sender, Encoding.UTF8.GetString(buffer, 0, result.Count));
+            ReceiveMessage(sender, Encoding.UTF8.GetString(buffer, 0, result.Count));
         }
 
-        public abstract Task ReceiveMessage(WebSocket sender, string message);
+        public abstract void ReceiveMessage(WebSocket sender, string message);
 
     }
 }
